@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Descubra se você é um bom candidato ao protocolo OzenVitta com este teste rápido de 4 perguntas.">
   <title>Quiz de Transformação OzenVitta</title>
+   <!-- Facebook Pixel Code AQUI, SEU ANIMAL 🔥 -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src='https://connect.facebook.net/en_US/fbevents.js';
+    s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script');
+
+    fbq('init', '615286340870462');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=615286340870462&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- Fim do Pixel, agora pode sorrir 😎 -->
+
   <style>
     * { box-sizing: border-box; }
     body {
@@ -153,6 +173,33 @@
       margin: 0 10px;
     }
   </style>
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let index = 0;
+      const slides = document.querySelectorAll(".carousel img");
+      function showSlide() {
+        slides.forEach(slide => slide.classList.remove("active"));
+        slides[index].classList.add("active");
+        index = (index + 1) % slides.length;
+      }
+      showSlide();
+      setInterval(showSlide, 4000);
+
+      let countdown = 1800;
+      const countdownEl = document.getElementById("countdown");
+      function updateCountdown() {
+        const minutes = String(Math.floor(countdown / 60)).padStart(2, '0');
+        const seconds = String(countdown % 60).padStart(2, '0');
+        countdownEl.textContent = `${minutes}:${seconds}`;
+        countdown--;
+        if (countdown >= 0) setTimeout(updateCountdown, 1000);
+        else countdownEl.textContent = "Oferta expirada!";
+      }
+      updateCountdown();
+    });
+  </script>
+  </head>
+<body>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       //const ref = document.referrer;

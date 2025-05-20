@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Descubra se você é um bom candidato ao protocolo OzenVitta com este teste rápido de 4 perguntas.">
+  <title>Quiz de Transformação OzenVitta</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0; 
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1e2a78 0%, #00a97f 100%);
+      color: #ffffff;
+      text-align: center;
+    }
+    .container {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .question {
+      margin: 30px 0;
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .question h2 {
+      font-size: 1.2em;
+      margin-bottom: 25px;
+      color: #00ffcc;
+    }
+    .answers button {
+      display: block;
+      width: 80%;
+      max-width: 300px;
+      margin: 15px auto;
+      padding: 15px 25px;
+      background-color: #00ffcc;
+      color: #1e2a78;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .answers button:hover {
+      background-color: #00e0b0;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    .progress {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      margin: 30px auto;
+      width: 80%;
+      max-width: 400px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #00ffcc;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    .result {
+      display: none;
+      background-color: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 15px;
+      margin-top: 30px;
+      animation: fadeIn 0.8s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .result h2 {
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .result p {
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+    .cta a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 18px 35px;
+      background-color: #1e2a78;
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(30,42,120,0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .cta a:hover {
+      background-color: #152063;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(30,42,120,0.6);
+    }
+    .carousel {
+      margin: 30px auto;
+      max-width: 100%;
+      position: relative;
+    }
+    .carousel img {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      display: none;
+      margin: auto;
+    }
+    .carousel img.active {
+      display: block;
+    }
+    .timer {
+      margin-top: 20px;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #000000;
+    }
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      font-size: 0.8em;
+      color: #cccccc;
+      background-color: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    .footer-links {
+      margin-top: 15px;
+    }
+    .footer-links a {
+      color: #00ffcc;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const ref = document.referrer;
+      const isLocal = location.hostname === "127.0.0.1" || location.hostname === "localhost";
+      if (!ref.includes("facebook.com") && !ref.includes("instagram.com") && !isLocal) {
+        window.location.href = "https://google.com";
+      }
+
+      let index = 0;
+      const slides = document.querySelectorAll(".carousel img");
+      function showSlide() {
+        slides.forEach(slide => slide.classList.remove("active"));
+        slides[index].classList.add("active");
+        index = (index + 1) % slides.length;
+      }
+      showSlide();
+      setInterval(showSlide, 4000);
+
+      let countdown = 1800;
+      const countdownEl = document.getElementById("countdown");
+      function updateCountdown() {
+        const minutes = String(Math.floor(countdown / 60)).padStart(2, '0');
+        const seconds = String(countdown % 60).padStart(2, '0');
+        countdownEl.textContent = `${minutes}:${seconds}`;
+        countdown--;
+        if (countdown >= 0) setTimeout(updateCountdown, 1000);
+        else countdownEl.textContent = "Oferta expirada!";
+      }
+      updateCountdown();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Descubra se o OzenVitta é a solução que você precisa</h1>
+
+    <div class="carousel">
+      <img class="active" src="assets/images/fotoozenvitta_1.png" alt="Foto ozenvitta 1">
+      <img src="assets/images/fotoozenvitta_2.png" alt="Foto ozenvitta 2">
+      <img src="assets/images/fotoozenvitta_3.png" alt="Foto ozenvitta 3">
+     
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div id="quiz">
+      <div class="question">
+        <h2>Você já tentou algum método para melhorar sua saúde ou forma física?</h2>
+        <div class="answers">
+          <button onclick="nextQuestion()">Sim, vários</button>
+          <button onclick="nextQuestion()">Algum/poucos</button>
+          <button onclick="nextQuestion()">Nunca tentei nada</button>
+        </div>
+      </div>
+    </div>
+    <div class="result" id="result">
+      <h2>Ótimo! Vejo que você quer experimentar esse produto incrível!</h2>
+      <p>Independente de sua situação, o ozenvitta vai te ajudar a:</p>
+      <ul style="text-align: left; margin: 20px auto; max-width: 400px;">
+        <li>Ativar seu metabolismo naturalmente</li>
+        <li>Reduzir medidas sem dietas restritivas</li>
+        <li>Melhorar sua energia e disposição</li>
+        <li>Ter resultados visíveis em poucas semanas</li>
+      </ul>
+      <p><strong>Oferta especial apenas para quem completou o quiz:</strong></p>
+      <div class="timer">⏳ OFERTA EXPIRA EM: <span id="countdown">30:00</span></div>
+      <div class="cta">
+        <a href="https://app.monetizze.com.br/r/AXU25300972/?u=BP81053" target="_blank" onclick="fbq('track', 'Purchase')">QUERO MEU ACESSO AO OZENVITTA AGORA!</a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 Transformações OzenVitta. Todos os direitos reservados.</p>
+    <div class="footer-links">
+      <a href="#" target="_blank">Termos de Uso</a>
+      <a href="#" target="_blank">Política de Privacidade</a>
+    </div>
+    <p style="margin-top: 15px;">Esta página não representa o Facebook. Produto vendido por afiliado independente.</p>
+  </footer>
+
+  <script>
+    const questions = [
+      "Você já tentou algum método para melhorar sua saúde ou forma física?",
+      "Como você se sente em relação ao seu corpo atualmente?",
+      "Você acredita que poderia ter mais energia no seu dia-a-dia?",
+      "Se existisse uma solução natural, você estaria aberto a experimentar?"
+    ];
+
+    let current = 0;
+    const progressBar = document.getElementById("progressBar");
+
+    function updateProgress() {
+      const progress = ((current + 1) / questions.length) * 100;
+      progressBar.style.width = progress + "%";
+    }
+
+    function nextQuestion() {
+      const quiz = document.getElementById("quiz");
+      current++;
+      updateProgress();
+
+      if (current < questions.length) {
+        let buttonsHTML = `
+          <button onclick="nextQuestion()">Sim</button>
+          <button onclick="nextQuestion()">Talvez</button>
+          <button onclick="nextQuestion()">Não</button>
+        `;
+
+        if (current === 1) {
+          buttonsHTML = `
+            <button onclick="nextQuestion()">Insatisfeito com meu corpo</button>
+            <button onclick="nextQuestion()">Quero melhorar minha forma física</button>
+            <button onclick="nextQuestion()">Estou bem, mas aberto a evoluir</button>
+          `;
+        }
+
+        quiz.style.opacity = 0;
+        setTimeout(() => {
+          quiz.innerHTML = `
+            <div class="question">
+              <h2>${questions[current]}</h2>
+              <div class="answers">
+                ${buttonsHTML}
+              </div>
+            </div>
+          `;
+          quiz.style.opacity = 1;
+        }, 300);
+      } else {
+        quiz.style.opacity = 0;
+        setTimeout(() => {
+          quiz.style.display = "none";
+          document.getElementById("result").style.display = "block";
+          if(typeof fbq !== 'undefined') {
+            fbq('track', 'Lead');
+          }
+        }, 300);
+      }
+    }
+
+    updateProgress();
+  </script>
+</body>
+</html>

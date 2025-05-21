@@ -236,7 +236,7 @@
       <p><strong>Oferta especial apenas para quem completou o quiz:</strong></p>
       <div class="timer">⏳ OFERTA EXPIRA EM: <span id="countdown">30:00</span></div>
       <div class="cta">
-        <a href="https://app.monetizze.com.br/r/AXU25300972/?u=BP81053" target="_blank" onclick="fbq('track', 'Purchase')">QUERO MEU ACESSO AO OZENVITTA AGORA!</a>
+        <a href="https://app.monetizze.com.br/r/AXU25300972/?u=BP81053" target="_blank" onclick="fbq('trackCustom', 'CTA_Clicado')">QUERO MEU ACESSO AO OZENVITTA AGORA!</a>
       </div>
     </div>
   </div>
@@ -266,48 +266,52 @@
     }
 
     function nextQuestion() {
-      const quiz = document.getElementById("quiz");
-      current++;
-      updateProgress();
+  const quiz = document.getElementById("quiz");
+  current++;
+  updateProgress();
 
-      if (current < questions.length) {
-        let buttonsHTML = `
-          <button onclick="nextQuestion()">Sim</button>
-          <button onclick="nextQuestion()">Talvez</button>
-          <button onclick="nextQuestion()">Não</button>
-        `;
+  if (current < questions.length) {
+    let buttonsHTML = `
+      <button onclick="nextQuestion()">Sim</button>
+      <button onclick="nextQuestion()">Talvez</button>
+      <button onclick="nextQuestion()">Não</button>
+    `;
 
-        if (current === 1) {
-          buttonsHTML = `
-            <button onclick="nextQuestion()">Insatisfeito com meu corpo</button>
-            <button onclick="nextQuestion()">Quero melhorar minha forma física</button>
-            <button onclick="nextQuestion()">Estou bem, mas aberto a evoluir</button>
-          `;
-        }
-
-        quiz.style.opacity = 0;
-        setTimeout(() => {
-          quiz.innerHTML = `
-            <div class="question">
-              <h2>${questions[current]}</h2>
-              <div class="answers">
-                ${buttonsHTML}
-              </div>
-            </div>
-          `;
-          quiz.style.opacity = 1;
-        }, 300);
-      } else {
-        quiz.style.opacity = 0;
-        setTimeout(() => {
-          quiz.style.display = "none";
-          document.getElementById("result").style.display = "block";
-          if(typeof fbq !== 'undefined') {
-            fbq('track', 'Lead');
-          }
-        }, 300);
-      }
+    if (current === 1) {
+      buttonsHTML = `
+        <button onclick="nextQuestion()">Insatisfeito com meu corpo</button>
+        <button onclick="nextQuestion()">Quero melhorar minha forma física</button>
+        <button onclick="nextQuestion()">Estou bem, mas aberto a evoluir</button>
+      `;
     }
+
+    quiz.style.opacity = 0;
+    setTimeout(() => {
+      quiz.innerHTML = `
+        <div class="question">
+          <h2>${questions[current]}</h2>
+          <div class="answers">
+            ${buttonsHTML}
+          </div>
+        </div>
+      `;
+      quiz.style.opacity = 1;
+    }, 300);
+  } else {
+    quiz.style.opacity = 0;
+    setTimeout(() => {
+      quiz.style.display = "none";
+      document.getElementById("result").style.display = "block";
+
+      // RASTREAMENTO CERTO DO FINAL DO QUIZ 🧠🔥
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead'); // padrão
+        fbq('trackCustom', 'QuizFinalizado'); // evento personalizado
+      }
+
+    }, 300);
+  }
+}
 
     updateProgress();
   </script>
